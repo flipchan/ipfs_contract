@@ -15,7 +15,7 @@ contract Inbox {
     string public filename; 
     string ipfs_file = ""#,
     );
-    long_string.push_str(format!("{filename}", filename = cid).as_str()); // cid of ipfs file
+    long_string.push_str(cid); // cid of ipfs file
     long_string.push_str(
         r#"";
     constructor(string memory myfile) {
@@ -38,7 +38,7 @@ contract Inbox {
         File::create(format!("{filename}.sol", filename = cid)).expect("Could not create file");
     file.write_all(long_string.as_bytes())?;
     println!("Generated solidity contract: {}.sol", cid);
-    let _compileme = compile_solc(&format!("{}.sol", cid).as_str());
+    let _compileme = compile_solc(format!("{}.sol", cid).as_str());
     Ok(long_string) //.to_string()
 }
 

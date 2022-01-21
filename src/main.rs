@@ -65,7 +65,6 @@ mod tests {
         let cid = setup().await;
         println!("Uploaded file to ipfs with Cid: {:?}", cid);
         assert_eq!(cid.as_str(), "QmeomffUNfmQy76CQGy9NdmqEnnHU9soCexBnGU3ezPHVH");
-        assert!(true);
     }
 
    

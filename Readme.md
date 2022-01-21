@@ -1,4 +1,6 @@
-# A minimal file uploader that uploads a ipfs to and then compiles an ethereum smart contract with the file identifer from ipfs(cid)
+# ipfs_contract  
+A minimal file uploader that uploads a a file to ipfs, compiles an ethereum smart contract with the file identifer from ipfs(cid). Allowing      
+dapp developers to query for the ipfs file on ethereum's blockchain    
 
 
 ## Platform:

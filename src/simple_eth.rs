@@ -15,7 +15,7 @@ contract Inbox {
     string public filename; 
     string ipfs_file = ""#,
     );
-    long_string.push_str(cid); // cid of ipfs file
+    long_string.push_str(format!("{filename}", filename = cid).as_str()); // cid of ipfs file
     long_string.push_str(
         r#"";
     constructor(string memory myfile) {
@@ -38,18 +38,18 @@ contract Inbox {
         File::create(format!("{filename}.sol", filename = cid)).expect("Could not create file");
     file.write_all(long_string.as_bytes())?;
     println!("Generated solidity contract: {}.sol", cid);
-    let _compileme = compile_solc(format!("{}.sol", cid).as_str());
-    Ok(long_string) //.to_string()
+    let _compileme = compile_solc(&format!("{}.sol", cid).as_str());
+    Ok(long_string)
 }
 
-/// Make the source code tiny and use the installed version of solc instead of a library: solc -o outputDirectory --bin test.sol
+/// Make the source code tiny and use the installed version of solc instead of a library: solc --optimize --bin test.sol
 pub fn compile_solc(contract_file: &str) -> Result<bool, Error> {
     let shelloutput = Command::new("solc")
         .arg("--optimize") // compiler optimize the code
         .arg("--bin")
         .arg(&contract_file)
         .output()
-        .unwrap_or_else(|e| panic!("failed to execute process: {}", e)); // use solc to compile the contract without any thirdparty wrapper
+        .unwrap_or_else(|e| panic!("To run solc, here is the error: {}", e)); // use solc to compile the contract without any thirdparty wrapper
 
     let compiled_solidity = String::from_utf8_lossy(&shelloutput.stdout);
     let mut file: File = File::create(format!("{filename}.bin", filename = contract_file))

@@ -8,14 +8,10 @@ authors = ["flipchan@riseup.net"]
 [dependencies]
 futures                   = "0.3"
 ipfs-api-backend-hyper    = { git = "https://github.com/ferristseng/rust-ipfs-api"}#//, optional = true }
-tar                       = "0.4"
 tokio                     = { version = "1", features = ["time", "macros", "rt-multi-thread"] }
-tokio-stream              = { version = "0.1", features = ["time"] }
-tracing-subscriber        = { version = "0.2", features = ["fmt"] }
 anyhow = "1.0.39"
 serde = { version = "1.0.124", features = ["derive"] }
 serde_json = "1.0.64"
-rand = "0.8.4"
 
 [profile.release]
 opt-level = "s" # Make the binary smaller | https://doc.rust-lang.org/cargo/reference/profiles.html
